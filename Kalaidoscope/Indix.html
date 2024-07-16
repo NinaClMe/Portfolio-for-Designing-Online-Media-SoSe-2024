@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaleidoskop</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 90%;
+      max-width: 900px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    .shape-buttons, .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .canvas-container {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .shape-button {
+      width: 60px;
+      height: 60px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .shape-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+    .circle {
+      background-color: #81C784;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+    .square {
+      background-color: #64B5F6;
+      width: 50px;
+      height: 50px;
+    }
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 50px solid #e57373;
+      background-color: transparent;
+    }
+    .line {
+      background-color: #FFB74D;
+      width: 50px;
+      height: 15px;
+      border-radius: 10px;
+    }
+    .action-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .action-button:hover {
+      background-color: #388E3C;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="shape-buttons">
+      <button class="shape-button circle" onclick="addShape('circle')"></button>
+      <button class="shape-button square" onclick="addShape('square')"></button>
+      <button class="shape-button triangle" onclick="addShape('triangle')"></button>
+      <button class="shape-button line" onclick="addShape('line')"></button>
+    </div>
+    <div class="canvas-container">
+      <canvas id="kaleidoscopeCanvas" width="400" height="400"></canvas>
+    </div>
+    <div class="action-buttons">
+      <button class="action-button" onclick="changeBackgroundColor()">Hintergrundfarbe ändern</button>
+      <button class="action-button" onclick="mirrorCanvas()">Spiegeln</button>
+      <button class="action-button" onclick="saveCanvas()">Speichern</button>
+    </div>
+  </div>
+  <script src="./kaleidoscope.js"></script>
+</body>
+</html>
